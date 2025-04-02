@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Webpage</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <script>
+        // Redirect users based on their role
+        const role = sessionStorage.getItem('role');
+        if (!role) {
+            alert('You are not logged in. Redirecting to login page.');
+            window.location.href = 'admin.html'; // Redirect to login page if not logged in
+        } else if (role === 'viewer') {
+            document.body.setAttribute('data-role', 'viewer');
+        } else if (role === 'admin') {
+            document.body.setAttribute('data-role', 'admin');
+        }
+    </script>
+    <h1>Enter the players score</h1>
+    <p1>points Table </p1>
+    <table id="pointsTable" border="2">
+        <thead>
+            <tr>
+            <th>Player</th>
+            <th>Points</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <td>Gopi</td>
+            <td></td>
+            </tr>
+            <tr>
+            <td>Nikhil</td>
+            <td></td>
+            </tr>
+            <tr>
+            <td>Sankings</td>
+            <td></td>
+            </tr>
+            <tr>
+            <td>Bp</td>
+            <td></td>
+            </tr>
+            <tr>
+            <td>Rajesh</td>
+            <td></td>
+            </tr>
+            <tr>
+            <td>Bharadwaj</td>
+            <td></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <select id="matchSelect" class="myselect matchselect">
+        <option value="match1">Match 1</option>
+        <option value="match2">Match 2</option>
+        <option value="match3">Match 3</option>
+        <option value="match4">Match 4</option>
+        <option value="match5">Match 5</option>
+        <option value="match6">Match 6</option>
+        <option value="match7">Match 7</option>
+        <option value="match8">Match 8</option>
+        <option value="match9">Match 9</option>
+        <option value="match10">Match 10</option>
+        <option value="match11">Match 11</option>
+        <option value="match12">Match 12</option>
+        <option value="match13">Match 13</option>
+        <option value="match14">Match 14</option>
+        <option value="match15">Match 15</option>
+        <option value="match16">Match 16</option>
+        <option value="match17">Match 17</option>
+        <option value="match18">Match 18</option>
+        <option value="match19">Match 19</option>
+        <option value="match20">Match 20</option>
+        <option value="match21">Match 21</option>
+        <option value="match22">Match 22</option>
+        <option value="match23">Match 23</option>
+        <option value="match24">Match 24</option>
+        <option value="match25">Match 25</option>
+        <option value="match26">Match 26</option>
+        <option value="match27">Match 27</option>
+        <option value="match28">Match 28</option>
+        <option value="match29">Match 29</option>
+        <option value="match30">Match 30</option>
+        <option value="match31">Match 31</option>
+        <option value="match32">Match 32</option>
+        <option value="match33">Match 33</option>
+        <option value="match34">Match 34</option>
+        <option value="match35">Match 35</option>
+        <option value="match36">Match 36</option>
+        <option value="match37">Match 37</option>
+        <option value="match38">Match 38</option>
+        <option value="match39">Match 39</option>
+        <option value="match40">Match 40</option>
+        <option value="match41">Match 41</option>
+        <option value="match42">Match 42</option>
+        <option value="match43">Match 43</option>
+        <option value="match44">Match 44</option>
+        <option value="match45">Match 45</option>
+        <option value="match46">Match 46</option>
+        <option value="match47">Match 47</option>
+        <option value="match48">Match 48</option>
+        <option value="match49">Match 49</option>
+        <option value="match50">Match 50</option>
+        <option value="match51">Match 51</option>
+        <option value="match52">Match 52</option>
+        <option value="match53">Match 53</option>
+        <option value="match54">Match 54</option>
+        <option value="match55">Match 55</option>
+        <option value="match56">Match 56</option>
+        <option value="match57">Match 57</option>
+        <option value="match58">Match 58</option>
+        <option value="match59">Match 59</option>
+        <option value="match60">Match 60</option>
+        <option value="match61">Match 61</option>
+        <option value="match62">Match 62</option>
+        <option value="match63">Match 63</option>
+        <option value="match64">Match 64</option>
+        <option value="match65">Match 65</option>
+        <option value="match66">Match 66</option>
+        <option value="match67">Match 67</option>
+        <option value="match68">Match 68</option>
+        <option value="match69">Match 69</option>
+        <option value="match70">Match 70</option>
+        <option value="match71">Match 71</option>
+        <option value="match72">Match 72</option>
+        <option value="match73">Match 73</option>
+        <option value="match74">Match 74</option>
+    </select>
+
+    <select id="mySelect" class="myselect">
+        <option value="Gopi">Gopi</option>
+        <option value="Nikhil">Nikhil</option>
+        <option value="Sankings">Sankings</option>
+        <option value="Bp">Bp</option>
+        <option value="Rajesh">Rajesh</option>
+        <option value="Bharadwaj">Bharadwaj</option>
+    </select>
+
+    <select id="valueSelect">
+        <option value="100">100</option>
+        <option value="80">80</option>
+        <option value="70">70</option>
+        <option value="50">50</option>
+    </select>
+
+    <button id="assignButton">Assign</button> <!-- Assign button -->
+    <button id="submitMatchButton">Submit Match</button> <!-- New Submit Match button -->
+
+    <div class="button-container">
+        <button id="overallScoreButton" onclick="location.href='overallScore.html'">View Overall Score</button>
+        <button id="retrieveButton">Retrieve Match Data</button>
+        <button id="downloadButton">Download JSON</button>
+        <button id="clearLocalStorageButton">Clear Local Storage</button> <!-- New button -->
+        <button id="clearPageDataButton">Clear Page Data</button> <!-- New button -->
+        <button id="clearSelectedMatchButton">Clear Selected Match</button> <!-- New button -->
+    </div>
+
+    <div id="clickableValues"></div>
+
+    <script src="script.js"></script>
+    <script>
+        // Disable buttons for viewers
+        const userRole = document.body.getAttribute('data-role');
+        if (userRole === 'viewer') {
+            document.getElementById('assignButton').disabled = true;
+            document.getElementById('submitMatchButton').disabled = true;
+            document.getElementById('clearLocalStorageButton').disabled = true;
+            document.getElementById('clearPageDataButton').disabled = true;
+        }
+    </script>
+</body>
+</html>

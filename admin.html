@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <script>
+        // Clear sessionStorage when accessing the login page
+        sessionStorage.clear();
+    </script>
+    <h1>Admin Login</h1>
+    <form id="adminLoginForm">
+        <label for="adminPassword">Enter Password:</label>
+        <div style="position: relative;">
+            <input type="password" id="adminPassword" placeholder="Password" required>
+            <button type="button" id="toggleAdminPassword" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%);">👁️</button>
+        </div>
+        <button type="submit">Login</button>
+    </form>
+    <script>
+        document.getElementById('adminLoginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+            const password = document.getElementById('adminPassword').value.trim();
+            if (password === 'admin123') { // Admin password
+                sessionStorage.setItem('role', 'admin'); // Store role in sessionStorage
+                alert('Admin login successful!');
+                window.location.href = 'index.html'; // Redirect to admin page
+            } else if (password === 'view2025') { // Viewer password
+                sessionStorage.setItem('role', 'viewer'); // Store role in sessionStorage
+                alert('Viewer login successful!');
+                window.location.href = 'viewer_score.html'; // Redirect to viewer page
+            } else {
+                alert('Invalid password. Please try again.');
+            }
+        });
+
+        document.getElementById('toggleAdminPassword').addEventListener('click', function() {
+            const passwordField = document.getElementById('adminPassword');
+            const type = passwordField.type === 'password' ? 'text' : 'password';
+            passwordField.type = type;
+        });
+    </script>
+</body>
+</html>

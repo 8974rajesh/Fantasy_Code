@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viewer Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <script>
+        // Clear sessionStorage when accessing the login page
+        sessionStorage.clear();
+    </script>
+    <h1>Viewer Login</h1>
+    <form id="viewerLoginForm">
+        <label for="viewerPassword">Enter Password:</label>
+        <div style="position: relative;">
+            <input type="password" id="viewerPassword" placeholder="Password" required>
+            <button type="button" id="toggleViewerPassword" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%);">👁️</button>
+        </div>
+        <button type="submit">Login</button>
+    </form>
+    <script>
+        document.getElementById('viewerLoginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+            const password = document.getElementById('viewerPassword').value.trim();
+            if (password === '2025') { // Viewer password
+                sessionStorage.setItem('role', 'viewer'); // Store role in sessionStorage
+                alert('Viewer login successful!');
+                window.location.href = 'overallScore.html'; // Redirect to viewer page
+            } else if (password === '123456') { // Admin password
+                sessionStorage.setItem('role', 'admin'); // Store role in sessionStorage
+                alert('Admin login successful!');
+                window.location.href = 'index.html'; // Redirect to admin page
+            } else if (password === '') {
+                alert('Password cannot be empty. Please enter a valid password.');
+            } else {
+                alert('Invalid password. Please try again.');
+            }
+        });
+
+        document.getElementById('toggleViewerPassword').addEventListener('click', function() {
+            const passwordField = document.getElementById('viewerPassword');
+            const type = passwordField.type === 'password' ? 'text' : 'password';
+            passwordField.type = type;
+        });
+    </script>
+</body>
+</html>

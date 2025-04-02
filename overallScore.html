@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overall Score</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Overall Score</h1>
+    <table id="overallScoreTable" class="score-table">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Player</th>
+                <th>Points</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Player scores will be inserted dynamically -->
+        </tbody>
+    </table>
+    <button onclick="location.href='index.html'">Back to Main Page</button>
+    <button onclick="resetScores()">Reset Scores</button>
+
+    <script>
+        const players = ["Gopi", "Nikhil", "Sankings", "Bp", "Rajesh", "Bharadwaj"];
+
+        function calculateOverallScores() {
+            const overallScores = {};
+
+            // Initialize scores for all players
+            players.forEach(player => {
+                overallScores[player] = 0;
+            });
+
+            // Iterate through localStorage to sum up scores for each player
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                if (key.startsWith("assignedValues_")) {
+                    const matchData = JSON.parse(localStorage.getItem(key));
+                    for (const player in matchData) {
+                        if (overallScores.hasOwnProperty(player)) {
+                            overallScores[player] += parseInt(matchData[player], 10) || 0;
+                        }
+                    }
+                }
+            }
+
+            updateScoreTable(overallScores);
+        }
+
+        function updateScoreTable(scores) {
+            const tableBody = document.querySelector("#overallScoreTable tbody");
+
+            // Convert scores object to an array and sort it (highest score first)
+            const sortedScores = Object.entries(scores)
+                .sort((a, b) => b[1] - a[1])
+                .map(([player, score], index) => ({
+                    rank: index + 1,
+                    player,
+                    score
+                }));
+
+            // Build the table dynamically
+            tableBody.innerHTML = sortedScores.map(({ rank, player, score }) => `
+                <tr>
+                    <td>${rank}</td>
+                    <td>${player}</td>
+                    <td>${score}</td>
+                </tr>
+            `).join("");
+        }
+
+        function resetScores() {
+            if (confirm("Are you sure you want to reset all scores?")) {
+                const keysToRemove = [];
+                for (let i = 0; i < localStorage.length; i++) {
+                    const key = localStorage.key(i);
+                    if (key.startsWith("assignedValues_")) {
+                        keysToRemove.push(key);
+                    }
+                }
+                keysToRemove.forEach(key => localStorage.removeItem(key));
+                calculateOverallScores();
+                alert("Scores have been reset.");
+            }
+        }
+
+        // Calculate and display overall scores on page load
+        window.addEventListener('load', calculateOverallScores);
+    </script>
+</body>
+</html>
